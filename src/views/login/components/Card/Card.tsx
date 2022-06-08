@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { setCurrentUser, setError } from "../../../../redux/views/login/actions";
 import { useValidator } from "../../utils/useValidator";
@@ -16,7 +17,7 @@ import { Card, Error, Title } from "./Card.style";
 
 export const CardComponent = () => {
     const dispatch = useDispatch();
-    const login = useSelector((state) => state);
+    const navigate = useNavigate();
 
     // Local States
     const [branchId, setBranchId] = useState<string>('');
@@ -37,6 +38,7 @@ export const CardComponent = () => {
             dispatch(setCurrentUser(currUser));
         }
         setErrorMsg(errorMessage);
+        if (!errorMessage) navigate("/dashboard", { replace: true });
     };
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
