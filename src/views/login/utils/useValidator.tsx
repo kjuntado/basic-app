@@ -12,7 +12,7 @@ export const useValidator = () => {
           value.password === password
       ));
 
-      if (isValid === undefined) return "Incorrect details";
+      if (isValid === undefined) return "User details not found.";
       return "";
     };
 

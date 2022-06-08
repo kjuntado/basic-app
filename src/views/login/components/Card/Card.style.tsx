@@ -24,4 +24,5 @@ export const Error = styled(Typography)`
     border-radius: 6px;
     line-height: 32px;
     margin-top: 12px;
+    text-align: center;
 `;
