@@ -8,17 +8,35 @@ import {
     OutlinedInput
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Card, Title } from "./Card.style";
+import { setError } from "../../../../redux/views/login/actions";
+import { useValidator } from "../../utils/useValidator";
+import { Card, Error, Title } from "./Card.style";
 
 export const CardComponent = () => {
+    const dispatch = useDispatch();
+    const login = useSelector((state) => state);
+
     // Local States
     const [branchId, setBranchId] = useState<string>('');
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [errorMsg, setErrorMsg] = useState<string>('');
+
+    // Custom Hooks
+    const { checkValidity } = useValidator();
 
     // Event handlers
+    const handleButtonClick = () => {
+        //dispatch(setError(true));
+        const errorMessage = checkValidity({ branchId, username, password });
+        if (errorMessage) dispatch(setError(true));
+        else dispatch(setError(false));
+        setErrorMsg(errorMessage);
+    };
+
     const handleClickShowPassword = () => setShowPassword(!showPassword);
 
     const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
@@ -94,7 +112,8 @@ export const CardComponent = () => {
             {renderTextField('Branch ID', 'branchId')}
             {renderTextField('Username', 'username')}
             {renderPassword()}
-            <Button variant="contained" size="large">LOGIN</Button>
+            <Button variant="contained" size="large" onClick={handleButtonClick}>LOGIN</Button>
+            <Error>{errorMsg}</Error>
         </Card>
     );
 };

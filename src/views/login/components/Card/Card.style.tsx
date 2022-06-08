@@ -16,3 +16,12 @@ export const Title = styled(Typography)`
     font-size: 28px;
     color: #4d5776;
 `;
+
+export const Error = styled(Typography)`
+    font-size: 16px;
+    color: #ff5a74;
+    background-color: #ffcdd5;
+    border-radius: 6px;
+    line-height: 32px;
+    margin-top: 12px;
+`;
