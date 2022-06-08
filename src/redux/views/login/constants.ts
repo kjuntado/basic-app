@@ -7,3 +7,13 @@ export const EmptyUser = {
     lastName: "",
     position: ""
 };
+
+export const EmptyFormData = {
+    branchId: "",
+    userName: "",
+    password: "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    position: ""
+};
