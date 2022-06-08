@@ -9,14 +9,15 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { setError } from "../../../../redux/views/login/actions";
+import { setCurrentUser, setError } from "../../../../redux/views/login/actions";
 import { useValidator } from "../../utils/useValidator";
 import { Card, Error, Title } from "./Card.style";
 
 export const CardComponent = () => {
     const dispatch = useDispatch();
-    const login = useSelector((state) => state);
+    const navigate = useNavigate();
 
     // Local States
     const [branchId, setBranchId] = useState<string>('');
@@ -30,11 +31,14 @@ export const CardComponent = () => {
 
     // Event handlers
     const handleButtonClick = () => {
-        //dispatch(setError(true));
-        const errorMessage = checkValidity({ branchId, username, password });
+        const { errorMessage, currUser } = checkValidity({ branchId, username, password });
         if (errorMessage) dispatch(setError(true));
-        else dispatch(setError(false));
+        else {
+            dispatch(setError(false));
+            dispatch(setCurrentUser(currUser));
+        }
         setErrorMsg(errorMessage);
+        if (!errorMessage) navigate("/dashboard", { replace: true });
     };
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
