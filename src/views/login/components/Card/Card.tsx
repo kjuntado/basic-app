@@ -8,7 +8,7 @@ import {
     OutlinedInput
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { setCurrentUser, setError } from "../../../../redux/views/login/actions";

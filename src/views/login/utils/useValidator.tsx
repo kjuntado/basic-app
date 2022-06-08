@@ -1,3 +1,4 @@
+import { EmptyUser } from "../../../redux/views/login/constants";
 import { TUser, TUseValidator, TValidityReturn } from "../types";
 import { users } from "./testData";
 
@@ -7,7 +8,7 @@ export const useValidator = () => {
       if (!branchId || !username || !password) errMsg = "Missing fields!";
       else if (isNaN(Number(branchId))) errMsg = "Branch ID should be a number.";
       
-      if (errMsg) return { errorMessage: errMsg, currUser: {} as TUser };
+      if (errMsg) return { errorMessage: errMsg, currUser: EmptyUser };
 
       const isValid = users.find((value) => (
           String(value.branchId) === branchId &&
