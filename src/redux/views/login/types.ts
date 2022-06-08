@@ -1,5 +1,8 @@
+import { TUser } from "../../../views/login/types";
+
 export enum LocalActions {
     SET_ERROR = 'SET_ERROR',
+    SET_CURRENT_USER = 'SET_CURRENT_USER',
 };
 
 export interface TSetError {
@@ -7,8 +10,14 @@ export interface TSetError {
     payload: boolean
 };
 
-export type TLoginActionTypes = TSetError;
+export interface TSeCurrentUser {
+    type: LocalActions.SET_CURRENT_USER,
+    payload: TUser
+};
+
+export type TLoginActionTypes = TSetError | TSeCurrentUser;
 
 export interface TLoginState {
     hasError: boolean;
+    currUser: TUser;
 };

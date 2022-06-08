@@ -1,4 +1,6 @@
-export const users = [
+import { TUser } from "../types";
+
+export const users: TUser[] = [
     {
       branchId: 10001,
       userName: "testuser01",
