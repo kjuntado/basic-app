@@ -8,7 +8,7 @@ import {
     OutlinedInput
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { TUser } from "../../../login/types";
 import { addUser } from "../../../../redux/views/dashboard/actions";
@@ -17,7 +17,6 @@ import { ButtonContainers, FormContainer, Label } from "./AddUserCard.styles";
 
 export const AddUserCard = () => {
     const dispatch = useDispatch();
-    const state = useSelector((state) => (state));
 
     // Local States
     const [values, setValues] = useState<Record<string, unknown>>(EmptyFormData);

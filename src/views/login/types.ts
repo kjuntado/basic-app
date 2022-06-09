@@ -2,6 +2,7 @@ export interface TUseValidator {
     branchId: string;
     username: string;
     password: string;
+    users: TUser[]
 };
 
 export interface TUser {
