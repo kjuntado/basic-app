@@ -12,12 +12,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { setCurrentUser, setError } from "../../../../redux/views/login/actions";
+import { TDashboardState } from "../../../../redux/views/dashboard/types";
+import { TReducer } from "../../../..//redux/types";
 import { useValidator } from "../../utils/useValidator";
 import { Card, Error, Title } from "./Card.style";
 
 export const CardComponent = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const state = useSelector<TReducer>((state) => (state.db)) as TDashboardState;
 
     // Local States
     const [branchId, setBranchId] = useState<string>('');
@@ -31,7 +35,7 @@ export const CardComponent = () => {
 
     // Event handlers
     const handleButtonClick = () => {
-        const { errorMessage, currUser } = checkValidity({ branchId, username, password });
+        const { errorMessage, currUser } = checkValidity({ branchId, username, password, users: state.users });
         if (errorMessage) dispatch(setError(true));
         else {
             dispatch(setError(false));
