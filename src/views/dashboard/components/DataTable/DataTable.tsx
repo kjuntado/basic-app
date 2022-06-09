@@ -68,6 +68,7 @@ export const DataTable = () => {
             <DataGrid
                 columns={columns}
                 rows={formatRows(state.users)}
+                rowsPerPageOptions={[5, 10, 15]}
                 pageSize={10}
             />
         </GridContainer>

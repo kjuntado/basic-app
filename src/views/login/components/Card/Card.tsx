@@ -76,6 +76,7 @@ export const CardComponent = () => {
                 </InputLabel>
                 <OutlinedInput
                     id={`${id}-input`}
+                    data-testid={`${id}-input`}
                     type="text"
                     value={id === 'branchId' ? branchId : username}
                     onChange={handleChange(id)}
@@ -93,6 +94,7 @@ export const CardComponent = () => {
                 </InputLabel>
                 <OutlinedInput
                     id="pw-input"
+                    data-testid="pw-input"
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={handleChange('password')}
@@ -120,8 +122,8 @@ export const CardComponent = () => {
             {renderTextField('Branch ID', 'branchId')}
             {renderTextField('Username', 'username')}
             {renderPassword()}
-            <Button variant="contained" size="large" onClick={handleButtonClick}>LOGIN</Button>
-            <Error>{errorMsg}</Error>
+            <Button data-testid="login-btn" variant="contained" size="large" onClick={handleButtonClick}>LOGIN</Button>
+            {errorMsg && <Error data-testid="login-error">{errorMsg}</Error>}
         </Card>
     );
 };
