@@ -18,3 +18,7 @@ export interface TValidityReturn {
     errorMessage: string;
     currUser: TUser;
 };
+
+export interface TUserRow extends TUser {
+    id: number;
+};

@@ -11,7 +11,7 @@ export function dashboardReducer (state = initialState, actions: TDashboardActio
         case LocalActions.ADD_NEW_USER:
             return { ...state, users: [...state.users, actions.payload] };
         case LocalActions.REMOVE_USER: {
-            const newUsers = state.users.filter((user) => user.userName === actions.payload);
+            const newUsers = state.users.filter((user) => user.userName !== actions.payload);
             return { ...state, users: newUsers };
         };
         default:
